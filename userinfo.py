@@ -41,30 +41,6 @@ def get_info(username):
     if not user_info:
         print("No get Info")
         return    
-    
-    # sign fonksiyonu tanımlanmadığı için bu kısmı comment yapıyorum
-    # Eğer MedoSigner modülünde sign fonksiyonu varsa kullanabilirsin
-    url = "https://webcast16-normal-no1a.tiktokv.eu/webcast/user/?request_from=profile_card_v2&request_from_scene=1&target_uid="+str(user_info['id'])+"&iid="+str(random.randint(1, 10**19))+"&device_id="+str(random.randint(1, 10**19))+"&ac=wifi&channel=googleplay&aid=1233&app_name=musical_ly&version_code=300102&version_name=30.1.2&device_platform=android&os=android&ab_version=30.1.2&ssmix=a&device_type=RMX3511&device_brand=realme&language=ar&os_api=33&os_version=13&openudid="+str(binascii.hexlify(os.urandom(8)).decode())+"&manifest_version_code=2023001020&resolution=1080*2236&dpi=360&update_version_code=2023001020&_rticket="+str(round(random.uniform(1.2, 1.6) * 100000000) * -1) + "4632"+"&current_region=IQ&app_type=normal&sys_region=IQ&mcc_mnc=41805&timezone_name=Asia%2FBaghdad&carrier_region_v2=418&residence=IQ&app_language=ar&carrier_region=IQ&ac2=wifi&uoo=0&op_region=IQ&timezone_offset=10800&build_number=30.1.2&host_abi=arm64-v8a&locale=ar&region=IQ&content_language=gu%2C&ts="+str(round(random.uniform(1.2, 1.6) * 100000000) * -1)+"&cdid="+str(uuid.uuid4())+"&webcast_sdk_version=2920&webcast_language=ar&webcast_locale=ar_IQ"	
-    
-    headers = {'User-Agent': "com.zhiliaoapp.musically/2023001020 (Linux; U; Android 13; ar; RMX3511; Build/TP1A.220624.014; Cronet/TTNetVersion:06d6a583 2023-04-17 QuicVersion:d298137e 2023-02-13)"}
-    
-    # sign fonksiyonu olmadığı için bu satırı comment yapıyorum
-    # headers.update(sign(url.split('?')[1], '', "AadCFwpTyztA5j9L" + ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(9)), None, 1233))    
-    
-    try:
-        response = requests.get(url, headers=headers)
-        level_match = re.search(r'"default_pattern":"(.*?)"', response.text)
-        if level_match:
-            level_text = level_match.group(1)
-            if 'المستوى رقم' in level_text:
-                level = level_text.split('المستوى رقم')[1].strip()
-            else:
-                level = level_text
-        else:
-            level = "idk"
-    except Exception as e:
-        print(f"Eroor")
-        level = "idk"
 
     print(f"""
 📌 𝗨𝘀𝗲𝗿𝗻𝗮𝗺𝗲 : {user_info['username']}
